@@ -2,9 +2,7 @@ package kiosk
 
 import (
 	"context"
-	"io/ioutil"
 	"log"
-	"os"
 	"time"
 
 	"github.com/chromedp/chromedp"
@@ -13,11 +11,11 @@ import (
 
 // GrafanaKioskLocal creates a chrome-based kiosk using a local grafana-server account
 func GrafanaKioskLocal(cfg *Config) {
-	dir, err := ioutil.TempDir("", "chromedp-example")
-	if err != nil {
-		panic(err)
-	}
-	defer os.RemoveAll(dir)
+	// dir, err := ioutil.TempDir("", "chromedp-example")
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// defer os.RemoveAll(dir)
 
 	opts := []chromedp.ExecAllocatorOption{
 		chromedp.NoFirstRun,
@@ -25,7 +23,7 @@ func GrafanaKioskLocal(cfg *Config) {
 		chromedp.Flag("noerrdialogs", true),
 		chromedp.Flag("kiosk", true),
 		chromedp.Flag("bwsi", true),
-		chromedp.Flag("incognito", true),
+		// chromedp.Flag("incognito", true),
 		chromedp.Flag("disable-sync", true),
 		chromedp.Flag("disable-notifications", true),
 		chromedp.Flag("disable-overlay-scrollbar", true),
@@ -33,7 +31,7 @@ func GrafanaKioskLocal(cfg *Config) {
 		chromedp.Flag("test-type", cfg.Target.IgnoreCertificateErrors),
 		chromedp.Flag("window-position", cfg.General.WindowPosition),
 		chromedp.Flag("check-for-update-interval", "31536000"),
-		chromedp.UserDataDir(dir),
+		chromedp.UserDataDir("/home/pi/kiosk-data"),
 	}
 
 	allocCtx, cancel := chromedp.NewExecAllocator(context.Background(), opts...)
