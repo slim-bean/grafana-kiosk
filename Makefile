@@ -37,3 +37,6 @@ package: grafana-kiosk
 
 release: package
 	@echo "Release"
+
+docker-arm64:
+	docker build --build-arg TARGET_PLATFORM=linux/arm64 --build-arg COMPILE_GOARCH=arm64 -t slimbean/grafana-kiosk:2022-01-07v2 -f build/Dockerfile .
