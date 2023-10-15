@@ -57,7 +57,7 @@ func generateExecutorOptions(dir string, cfg *Config) []chromedp.ExecAllocatorOp
 		chromedp.Flag("noerrdialogs", true),
 		chromedp.Flag("kiosk", true),
 		chromedp.Flag("bwsi", true),
-		chromedp.Flag("incognito", true),
+		// chromedp.Flag("incognito", true),
 		chromedp.Flag("disable-sync", true),
 		chromedp.Flag("disable-notifications", true),
 		chromedp.Flag("disable-overlay-scrollbar", true),
@@ -66,7 +66,7 @@ func generateExecutorOptions(dir string, cfg *Config) []chromedp.ExecAllocatorOp
 		chromedp.Flag("ignore-certificate-errors", cfg.Target.IgnoreCertificateErrors),
 		chromedp.Flag("test-type", cfg.Target.IgnoreCertificateErrors),
 		chromedp.Flag("autoplay-policy", "no-user-gesture-required"),
-		chromedp.UserDataDir(dir),
+		chromedp.UserDataDir("/home/pi/kiosk-data"),
 	}
 
 	if cfg.General.WindowSize != "" {
