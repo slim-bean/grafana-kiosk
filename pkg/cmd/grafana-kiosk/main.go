@@ -42,6 +42,7 @@ type Args struct {
 	WindowPosition          string
 	WindowSize              string
 	ScaleFactor             string
+	DataDir                 string
 }
 
 // ProcessArgs processes and handles CLI arguments.
@@ -71,6 +72,7 @@ func ProcessArgs(cfg interface{}) Args {
 	flagSettings.StringVar(&processedArgs.Audience, "audience", "", "idtoken audience")
 	flagSettings.StringVar(&processedArgs.KeyFile, "keyfile", "key.json", "idtoken json credentials")
 	flagSettings.StringVar(&processedArgs.APIKey, "apikey", "", "apikey")
+	flagSettings.StringVar(&processedArgs.DataDir, "data-dir", "", "Specify a data directory for storing cookies and other data, useful if using iframes, also disables incognito mode")
 
 	fu := flagSettings.Usage
 	flagSettings.Usage = func() {

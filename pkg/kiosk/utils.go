@@ -72,14 +72,23 @@ func generateExecutorOptions(dir string, cfg *Config) []chromedp.ExecAllocatorOp
 		chromedp.Flag("disable-search-engine-choice-screen", true),
 		chromedp.Flag("disable-sync", true),
 		chromedp.Flag("ignore-certificate-errors", cfg.Target.IgnoreCertificateErrors),
-		chromedp.Flag("incognito", true),
 		chromedp.Flag("kiosk", true),
 		chromedp.Flag("noerrdialogs", true),
 		chromedp.Flag("start-fullscreen", true),
 		chromedp.Flag("start-maximized", true),
 		chromedp.Flag("user-agent", userAgent),
 		chromedp.Flag("window-position", cfg.General.WindowPosition),
-		chromedp.UserDataDir(dir),
+	}
+
+	if cfg.General.DataDir != "" {
+		log.Println("Ignoring temp dir and using manually configured dir:", dir)
+		execAllocatorOption = append(execAllocatorOption,
+			chromedp.UserDataDir(cfg.General.DataDir),
+			chromedp.Flag("incognito", false))
+	} else {
+		execAllocatorOption = append(execAllocatorOption,
+			chromedp.UserDataDir(dir),
+			chromedp.Flag("incognito", true))
 	}
 
 	if !cfg.General.GPUEnabled {

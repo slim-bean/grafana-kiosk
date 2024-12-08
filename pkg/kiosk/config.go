@@ -18,6 +18,7 @@ type General struct {
 	ScaleFactor     string `yaml:"scale-factor" env:"KIOSK_SCALE_FACTOR" env-default:"1.0" env-description:"Scale factor, like zoom"`
 	WindowPosition  string `yaml:"window-position" env:"KIOSK_WINDOW_POSITION" env-default:"0,0" env-description:"Top Left Position of Kiosk"`
 	WindowSize      string `yaml:"window-size" env:"KIOSK_WINDOW_SIZE" env-default:"" env-description:"Size of Kiosk in pixels (width,height)"`
+	DataDir         string `yaml:"data-dir" env:"KIOSK_DATA_DIR" env-default:"" env-description:"Specify a data directory for storing cookies and other data, useful if using iframes, also disables incognito mode"`
 }
 
 // Target the dashboard/playlist details
